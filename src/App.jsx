@@ -31,11 +31,9 @@ function App() {
       <h1>Test</h1>
       <div className="app">
         {quotes.length > 0 &&
-          quotes.map((quote) => {
-            console.log("q", quote);
-            // <h2>{quote.quote}</h2>;
-            <Quote key={quote.id} quote={quote.quote} id={quote.id} />;
-          })}
+          quotes.map((quote) => (
+            <Quote key={quote.id} quote={quote.quote} id={quote.id} />
+          ))}
       </div>
     </>
   );
