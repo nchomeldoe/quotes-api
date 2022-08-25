@@ -1,40 +1,14 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import Quote from "./components/Quote/Quote.jsx";
+import QuotesCreator from "./containers/QuotesCreator/QuotesCreator";
 
-console.log(Quote);
+import QuotesViewer from "./containers/QuotesViewer/QuotesViewer";
 
 function App() {
-  const [quotes, setQuotes] = useState([]);
-  console.log("quotes", quotes);
-
-  const getQuotes = async () => {
-    try {
-      let response = await fetch("http://localhost:8080/quotes");
-      if (!response.ok) {
-        throw new Error(response.status + " error with request");
-      }
-      let quotesData = await response.json();
-      console.log("data", quotesData);
-      setQuotes(quotesData);
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  useEffect(() => {
-    getQuotes();
-  }, []);
-
   return (
     <>
-      <h1>Test</h1>
-      <div className="app">
-        {quotes.length > 0 &&
-          quotes.map((quote) => (
-            <Quote key={quote.id} quote={quote.quote} id={quote.id} />
-          ))}
-      </div>
+      <h1>Quotes</h1>
+      <QuotesViewer />
+      <QuotesCreator />
     </>
   );
 }
